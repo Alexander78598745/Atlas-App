@@ -50,13 +50,38 @@
                 transform: none !important;
             }
             .floating-animation { 
-                animation-duration: 12s !important; 
+                animation-duration: 8s !important; 
             }
             .card-hover {
                 transition: none !important;
             }
             .card-hover:hover {
                 transform: none !important;
+            }
+            /* Navegación suave en móvil */
+            .nav-link {
+                transition: color 0.1s ease;
+            }
+            /* Scroll horizontal más fluido para pestañas */
+            .overflow-x-auto {
+                scroll-behavior: smooth;
+            }
+            /* Ocultar scrollbar pero mantener funcionalidad */
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            
+            /* Tamaños responsive adicionales */
+            @media (max-width: 475px) {
+                .xs\\:hidden { display: none !important; }
+            }
+            @media (min-width: 476px) {
+                .xs\\:hidden { display: block !important; }
+            }
             }
             /* Eliminar cualquier animación pesada */
             * {
@@ -105,19 +130,27 @@
 
     <!-- Navigation con diseño mejorado -->
     <nav class="bg-white border-b border-gray-200 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex space-x-8">
-                <button data-page="dashboard" class="nav-link group inline-flex items-center px-1 pt-3 pb-3 border-b-2 border-blue-500 text-sm font-medium text-blue-600 transition-all">
-                    <i class="fas fa-tachometer-alt mr-2 group-hover:scale-110 transition-transform"></i>Dashboard
+        <div class="max-w-full mx-auto px-2 sm:px-4 lg:px-6">
+            <div class="flex space-x-2 sm:space-x-4 lg:space-x-6 overflow-x-auto scrollbar-hide">
+                <button data-page="dashboard" class="nav-link group inline-flex items-center px-1 pt-3 pb-3 border-b-2 border-blue-500 text-xs sm:text-sm font-medium text-blue-600 transition-all whitespace-nowrap">
+                    <i class="fas fa-tachometer-alt mr-1 sm:mr-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="hidden xs:inline">Dashboard</span>
+                    <span class="xs:hidden">Dash</span>
                 </button>
-                <button data-page="routes" class="nav-link group inline-flex items-center px-1 pt-3 pb-3 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-all">
-                    <i class="fas fa-route mr-2 group-hover:scale-110 transition-transform"></i>Rutas
+                <button data-page="routes" class="nav-link group inline-flex items-center px-1 pt-3 pb-3 border-b-2 border-transparent text-xs sm:text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-all whitespace-nowrap">
+                    <i class="fas fa-route mr-1 sm:mr-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="hidden xs:inline">Rutas</span>
+                    <span class="xs:hidden">Rut</span>
                 </button>
-                <button data-page="diary" class="nav-link group inline-flex items-center px-1 pt-3 pb-3 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-all">
-                    <i class="fas fa-book mr-2 group-hover:scale-110 transition-transform"></i>Diario
+                <button data-page="diary" class="nav-link group inline-flex items-center px-1 pt-3 pb-3 border-b-2 border-transparent text-xs sm:text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-all whitespace-nowrap">
+                    <i class="fas fa-book mr-1 sm:mr-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="hidden xs:inline">Diario</span>
+                    <span class="xs:hidden">Diario</span>
                 </button>
-                <button data-page="planner" class="nav-link group inline-flex items-center px-1 pt-3 pb-3 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-all">
-                    <i class="fas fa-calculator mr-2 group-hover:scale-110 transition-transform"></i>Planificador
+                <button data-page="planner" class="nav-link group inline-flex items-center px-1 pt-3 pb-3 border-b-2 border-transparent text-xs sm:text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-all whitespace-nowrap">
+                    <i class="fas fa-calculator mr-1 sm:mr-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="hidden xs:inline">Planificador</span>
+                    <span class="xs:hidden">Planif</span>
                 </button>
             </div>
         </div>
@@ -326,7 +359,7 @@
             </main>
 
             <!-- Planner Page -->
-            <div id="plannerPage" class="page hidden mx-auto px-3 sm:px-6 lg:px-8 max-w-6xl" style="margin-left: auto; margin-right: auto;">
+            <div id="plannerPage" class="page hidden mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl lg:max-w-6xl" style="margin-left: 1rem; margin-right: 1rem;">
                 <div class="mb-8">
                     <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 flex items-center">
                         <i class="fas fa-wallet mr-3 text-green-600"></i>Planificador de Presupuesto
@@ -2499,19 +2532,42 @@
                             console.log('📊 Firebase:', firebaseRoutes.length, 'rutas | Local:', localRoutes.length);
                             console.log('🕒 Firebase timestamp:', firebaseTimestamp, '| Local timestamp:', localTimestamp);
                             
-                            // SINCRONIZACIÓN INTELIGENTE basada en timestamps
+                            // SINCRONIZACIÓN INTELIGENTE con protección de eliminaciones
                             const shouldUpdate = (() => {
+                                // PROTECCIÓN: Si hay rutas eliminadas localmente, no restaurar
+                                const deletedRoutes = JSON.parse(localStorage.getItem('deletedRoutes') || '[]');
+                                
                                 // Si no hay datos locales, siempre usar Firebase
-                                if (!localRoutes.length && firebaseRoutes.length) return true;
+                                if (!localRoutes.length && firebaseRoutes.length) {
+                                    // Verificar que Firebase no esté enviando rutas eliminadas
+                                    const hasDeletedRoutes = firebaseRoutes.some(route => deletedRoutes.includes(String(route.id)));
+                                    if (hasDeletedRoutes) {
+                                        console.log('🚫 EVITANDO RESTAURACIÓN DE RUTAS ELIMINADAS');
+                                        return false;
+                                    }
+                                    return true;
+                                }
                                 
                                 // Si los datos son diferentes
                                 if (JSON.stringify(firebaseRoutes) !== JSON.stringify(localRoutes)) {
                                     // Si Firebase tiene timestamp más reciente
                                     if (firebaseTimestamp && (!localTimestamp || new Date(firebaseTimestamp) > new Date(localTimestamp))) {
+                                        // Verificar que Firebase no esté enviando rutas eliminadas
+                                        const hasDeletedRoutes = firebaseRoutes.some(route => deletedRoutes.includes(String(route.id)));
+                                        if (hasDeletedRoutes) {
+                                            console.log('🚫 EVITANDO RESTAURACIÓN DE RUTAS ELIMINADAS');
+                                            return false;
+                                        }
                                         return true;
                                     }
                                     // Si no hay timestamp en Firebase pero hay datos diferentes, usar Firebase
                                     if (firebaseTimestamp && !localTimestamp) {
+                                        // Verificar que Firebase no esté enviando rutas eliminadas
+                                        const hasDeletedRoutes = firebaseRoutes.some(route => deletedRoutes.includes(String(route.id)));
+                                        if (hasDeletedRoutes) {
+                                            console.log('🚫 EVITANDO RESTAURACIÓN DE RUTAS ELIMINADAS');
+                                            return false;
+                                        }
                                         return true;
                                     }
                                 }
