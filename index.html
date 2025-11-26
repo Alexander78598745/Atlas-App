@@ -806,9 +806,9 @@
             const noEntriesMsg = document.getElementById('noEntriesMessage');
             
             if (atlasApp.diaryEntries.length === 0) {
-                noEntriesMsg.classList.remove('hidden');
+                if (noEntriesMsg) noEntriesMsg.classList.remove('hidden');
             } else {
-                noEntriesMsg.classList.add('hidden');
+                if (noEntriesMsg) noEntriesMsg.classList.add('hidden');
                 timeline.innerHTML = atlasApp.diaryEntries.map(entry => `
                     <li class="px-6 py-4">
                         <div class="flex items-start space-x-4">
@@ -2363,15 +2363,32 @@
                             console.log('📊 Firebase:', firebaseData.length, 'viajes | Local:', localData.length, 'viajes');
                             console.log('🕒 Firebase timestamp:', firebaseTimestamp, '| Local timestamp:', localTimestamp);
                             
-                            // SINCRONIZACIÓN INTELIGENTE basada en timestamps
+                            // SINCRONIZACIÓN INTELIGENTE con protección de eliminaciones
                             const shouldUpdate = (() => {
+                                // PROTECCIÓN: Si hay rutas eliminadas localmente, no restaurar
+                                const deletedRoutes = JSON.parse(localStorage.getItem('deletedRoutes') || '[]');
+                                
                                 // Si no hay datos locales, siempre usar Firebase
-                                if (!localData.length && firebaseData.length) return true;
+                                if (!localData.length && firebaseData.length) {
+                                    // Verificar que Firebase no esté enviando rutas eliminadas
+                                    const hasDeletedRoutes = firebaseData.some(route => deletedRoutes.includes(String(route.id)));
+                                    if (hasDeletedRoutes) {
+                                        console.log('🚫 EVITANDO RESTAURACIÓN DE RUTAS ELIMINADAS');
+                                        return false;
+                                    }
+                                    return true;
+                                }
                                 
                                 // Si los datos son diferentes
                                 if (JSON.stringify(firebaseData) !== JSON.stringify(localData)) {
                                     // Si Firebase tiene timestamp más reciente
                                     if (firebaseTimestamp && (!localTimestamp || new Date(firebaseTimestamp) > new Date(localTimestamp))) {
+                                        // Verificar que Firebase no esté enviando rutas eliminadas
+                                        const hasDeletedRoutes = firebaseData.some(route => deletedRoutes.includes(String(route.id)));
+                                        if (hasDeletedRoutes) {
+                                            console.log('🚫 EVITANDO RESTAURACIÓN DE RUTAS ELIMINADAS');
+                                            return false;
+                                        }
                                         return true;
                                     }
                                     // Si no hay timestamp en Firebase pero hay datos diferentes, usar Firebase
@@ -2414,15 +2431,32 @@
                             console.log('📊 Firebase:', firebaseEntries.length, 'entradas | Local:', localEntries.length);
                             console.log('🕒 Firebase timestamp:', firebaseTimestamp, '| Local timestamp:', localTimestamp);
                             
-                            // SINCRONIZACIÓN INTELIGENTE basada en timestamps
+                            // SINCRONIZACIÓN INTELIGENTE con protección de eliminaciones
                             const shouldUpdate = (() => {
+                                // PROTECCIÓN: Si hay entradas eliminadas localmente, no restaurar
+                                const deletedEntries = JSON.parse(localStorage.getItem('deletedDiaryEntries') || '[]');
+                                
                                 // Si no hay datos locales, siempre usar Firebase
-                                if (!localEntries.length && firebaseEntries.length) return true;
+                                if (!localEntries.length && firebaseEntries.length) {
+                                    // Verificar que Firebase no esté enviando entradas eliminadas
+                                    const hasDeletedEntries = firebaseEntries.some(entry => deletedEntries.includes(String(entry.id)));
+                                    if (hasDeletedEntries) {
+                                        console.log('🚫 EVITANDO RESTAURACIÓN DE ENTRADAS ELIMINADAS');
+                                        return false;
+                                    }
+                                    return true;
+                                }
                                 
                                 // Si los datos son diferentes
                                 if (JSON.stringify(firebaseEntries) !== JSON.stringify(localEntries)) {
                                     // Si Firebase tiene timestamp más reciente
                                     if (firebaseTimestamp && (!localTimestamp || new Date(firebaseTimestamp) > new Date(localTimestamp))) {
+                                        // Verificar que Firebase no esté enviando entradas eliminadas
+                                        const hasDeletedEntries = firebaseEntries.some(entry => deletedEntries.includes(String(entry.id)));
+                                        if (hasDeletedEntries) {
+                                            console.log('🚫 EVITANDO RESTAURACIÓN DE ENTRADAS ELIMINADAS');
+                                            return false;
+                                        }
                                         return true;
                                     }
                                     // Si no hay timestamp en Firebase pero hay datos diferentes, usar Firebase
