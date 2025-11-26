@@ -1,0 +1,36 @@
+{
+  "name": "atlas-travel-app",
+  "version": "1.0.0",
+  "description": "Aplicación web para gestión de viajes con Firebase",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . -l 3000",
+    "dev": "npx live-server --port=3000",
+    "firebase-deploy": "firebase deploy --only hosting",
+    "firebase-serve": "firebase serve"
+  },
+  "keywords": [
+    "travel",
+    "app",
+    "planning",
+    "routes",
+    "diary",
+    "firebase",
+    "javascript",
+    "html5",
+    "css3"
+  ],
+  "author": "MiniMax Agent",
+  "license": "MIT",
+  "devDependencies": {
+    "firebase-tools": "^11.0.0",
+    "serve": "^14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/USERNAME/atlas-travel-app.git"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

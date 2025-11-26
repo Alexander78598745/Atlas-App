@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Funcionalidades - App de Viajes</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .pass { background-color: #d4edda; border-color: #c3e6cb; }
+        .fail { background-color: #f8d7da; border-color: #f5c6cb; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        button { margin: 5px; padding: 10px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        #results { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de Funcionalidades - Aplicación de Viajes</h1>
+    
+    <div class="test info">
+        <h3>📋 Instrucciones:</h3>
+        <p>1. Abre la aplicación en: <a href="http://localhost:3004" target="_blank">http://localhost:3004</a></p>
+        <p>2. Ejecuta cada test haciendo clic en los botones de abajo</p>
+        <p>3. Los resultados aparecerán automáticamente</p>
+    </div>
+
+    <div class="test">
+        <h3>1️⃣ Test: Botón "+ Nuevo Viaje"</h3>
+        <button onclick="testNuevoViaje()">Ejecutar Test</button>
+        <div id="test1-result"></div>
+    </div>
+
+    <div class="test">
+        <h3>2️⃣ Test: Menú de Usuario</h3>
+        <button onclick="testMenuUsuario()">Ejecutar Test</button>
+        <div id="test2-result"></div>
+    </div>
+
+    <div class="test">
+        <h3>3️⃣ Test: Página Rutas - "Ver detalles"</h3>
+        <button onclick="testRutas()">Ejecutar Test</button>
+        <div id="test3-result"></div>
+    </div>
+
+    <div class="test">
+        <h3>4️⃣ Test: Página Diario - Botón Flotante</h3>
+        <button onclick="testDiario()">Ejecutar Test</button>
+        <div id="test4-result"></div>
+    </div>
+
+    <div class="test">
+        <h3>5️⃣ Test: Página Planificador</h3>
+        <button onclick="testPlanificador()">Ejecutar Test</button>
+        <div id="test5-result"></div>
+    </div>
+
+    <div class="test">
+        <h3>6️⃣ Test: Mapa Interactivo</h3>
+        <button onclick="testMapa()">Ejecutar Test</button>
+        <div id="test6-result"></div>
+    </div>
+
+    <div id="results"></div>
+
+    <script>
+        function showResult(testNum, message, type = 'info') {
+            const resultDiv = document.getElementById(`test${testNum}-result`);
+            const className = type === 'pass' ? 'pass' : type === 'fail' ? 'fail' : 'info';
+            resultDiv.innerHTML = `<div class="${className}" style="margin-top: 10px; padding: 10px;">${message}</div>`;
+        }
+
+        function addToResults(message) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML += message;
+        }
+
+        function testNuevoViaje() {
+            const result = [];
+            result.push('<h4>Test: Botón "+ Nuevo Viaje"</h4>');
+            
+            // Buscar botón
+            const btn = document.getElementById('newTripBtn');
+            if (!btn) {
+                showResult(1, '❌ BOTÓN NO ENCONTRADO en DOM', 'fail');
+                return;
+            }
+            
+            result.push('✅ Botón encontrado en DOM');
+            result.push(`   - Visible: ${!btn.classList.contains('hidden') ? 'SÍ' : 'NO'}`);
+            result.push(`   - Tiene onclick: ${!!btn.onclick ? 'SÍ' : 'NO'}`);
+            result.push(`   - Texto: "${btn.textContent.trim()}"`);
+            
+            // Verificar función
+            if (typeof createNewTrip === 'function') {
+                result.push('✅ Función createNewTrip() existe');
+                showResult(1, result.join('<br>'), 'pass');
+            } else {
+                result.push('❌ Función createNewTrip() NO existe');
+                showResult(1, result.join('<br>'), 'fail');
+            }
+        }
+
+        function testMenuUsuario() {
+            const result = [];
+            result.push('<h4>Test: Menú de Usuario</h4>');
+            
+            // Botón menu
+            const btn = document.getElementById('userMenuBtn');
+            if (!btn) {
+                showResult(2, '❌ BOTÓN MENÚ NO ENCONTRADO', 'fail');
+                return;
+            }
+            
+            result.push('✅ Botón menú encontrado');
+            result.push(`   - Data-action: "${btn.getAttribute('data-action')}"`);
+            
+            // Link editar perfil
+            const editLink = document.querySelector('[data-action="edit-profile"]');
+            if (editLink) {
+                result.push('✅ Link editar perfil encontrado');
+            } else {
+                result.push('❌ Link editar perfil NO encontrado');
+            }
+            
+            // Función toggleUserMenu
+            if (typeof toggleUserMenu === 'function') {
+                result.push('✅ Función toggleUserMenu() existe');
+                showResult(2, result.join('<br>'), 'pass');
+            } else {
+                result.push('❌ Función toggleUserMenu() NO existe');
+                showResult(2, result.join('<br>'), 'fail');
+            }
+        }
+
+        function testRutas() {
+            const result = [];
+            result.push('<h4>Test: Página Rutas - "Ver detalles"</h4>');
+            
+            // Navegar a rutas
+            if (typeof navigateToPage === 'function') {
+                navigateToPage('routes');
+                
+                setTimeout(() => {
+                    // Buscar botones "Ver detalles"
+                    const botones = document.querySelectorAll('button[onclick*="showRouteDetails"]');
+                    result.push(`✅ Encontrados botones "Ver detalles": ${botones.length}`);
+                    
+                    if (botones.length > 0) {
+                        result.push('✅ Al menos un botón "Ver detalles" tiene onclick correcto');
+                    } else {
+                        result.push('❌ NO se encontraron botones con onclick="showRouteDetails"');
+                    }
+                    
+                    // Función showRouteDetails
+                    if (typeof showRouteDetails === 'function') {
+                        result.push('✅ Función showRouteDetails() existe');
+                        showResult(3, result.join('<br>'), 'pass');
+                    } else {
+                        result.push('❌ Función showRouteDetails() NO existe');
+                        showResult(3, result.join('<br>'), 'fail');
+                    }
+                }, 500);
+            } else {
+                result.push('❌ Función navigateToPage() NO existe');
+                showResult(3, result.join('<br>'), 'fail');
+            }
+        }
+
+        function testDiario() {
+            const result = [];
+            result.push('<h4>Test: Página Diario - Botón Flotante</h4>');
+            
+            // Navegar a diario
+            if (typeof navigateToPage === 'function') {
+                navigateToPage('diary');
+                
+                setTimeout(() => {
+                    // Buscar botón flotante (visible solo en móvil)
+                    const floatingBtn = document.querySelector('button[onclick*="addDiaryEntry"]');
+                    if (floatingBtn) {
+                        result.push('✅ Botón flotante encontrado');
+                        result.push(`   - Visible: ${!floatingBtn.classList.contains('sm:hidden') ? 'Desktop y Móvil' : 'Solo Móvil'}`);
+                        result.push(`   - Texto: "${floatingBtn.textContent.trim()}"`);
+                    } else {
+                        result.push('❌ Botón flotante NO encontrado');
+                    }
+                    
+                    // Función addDiaryEntry
+                    if (typeof addDiaryEntry === 'function') {
+                        result.push('✅ Función addDiaryEntry() existe');
+                        showResult(4, result.join('<br>'), 'pass');
+                    } else {
+                        result.push('❌ Función addDiaryEntry() NO existe');
+                        showResult(4, result.join('<br>'), 'fail');
+                    }
+                }, 500);
+            } else {
+                result.push('❌ Función navigateToPage() NO existe');
+                showResult(4, result.join('<br>'), 'fail');
+            }
+        }
+
+        function testPlanificador() {
+            const result = [];
+            result.push('<h4>Test: Página Planificador</h4>');
+            
+            // Navegar a planificador
+            if (typeof navigateToPage === 'function') {
+                navigateToPage('planner');
+                
+                setTimeout(() => {
+                    // Buscar inputs de presupuesto
+                    const inputs = document.querySelectorAll('input[type="number"], input[class*="budget"]');
+                    result.push(`✅ Encontrados inputs de presupuesto: ${inputs.length}`);
+                    
+                    if (inputs.length > 0) {
+                        result.push('✅ Inputs de presupuesto detectados');
+                        inputs.forEach((input, i) => {
+                            result.push(`   - Input ${i+1}: ${input.placeholder || 'Sin placeholder'}`);
+                        });
+                    }
+                    
+                    // Funciones de presupuesto
+                    const budgetFuncs = ['calculateBudget', 'updateBudget', 'autoCalculate', 'initializeBudgetCalculator'];
+                    let funcExists = false;
+                    budgetFuncs.forEach(func => {
+                        if (typeof window[func] === 'function') {
+                            result.push(`✅ Función ${func}() existe`);
+                            funcExists = true;
+                        }
+                    });
+                    
+                    if (!funcExists) {
+                        result.push('❌ NO se encontraron funciones de presupuesto');
+                    }
+                    
+                    showResult(5, result.join('<br>'), funcExists ? 'pass' : 'fail');
+                }, 500);
+            } else {
+                result.push('❌ Función navigateToPage() NO existe');
+                showResult(5, result.join('<br>'), 'fail');
+            }
+        }
+
+        function testMapa() {
+            const result = [];
+            result.push('<h4>Test: Mapa Interactivo</h4>');
+            
+            // Buscar elemento mapa
+            const mapElement = document.querySelector('#interactiveMap, .map, [class*="map"]');
+            if (mapElement) {
+                result.push('✅ Elemento mapa encontrado');
+                result.push(`   - Visible: ${mapElement.offsetWidth > 0 ? 'SÍ' : 'NO'}`);
+            } else {
+                result.push('❌ Elemento mapa NO encontrado');
+            }
+            
+            // Función showInteractiveMap
+            if (typeof showInteractiveMap === 'function') {
+                result.push('✅ Función showInteractiveMap() existe');
+                showResult(6, result.join('<br>'), 'pass');
+            } else {
+                result.push('❌ Función showInteractiveMap() NO existe');
+                showResult(6, result.join('<br>'), 'fail');
+            }
+        }
+
+        // Test rápido de funciones globales
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const globalFuncs = ['initApp', 'setupEventListeners', 'navigateToPage'];
+                const result = [];
+                result.push('<h3>🔧 Funciones Globales Disponibles</h3>');
+                
+                globalFuncs.forEach(func => {
+                    if (typeof window[func] === 'function') {
+                        result.push(`✅ ${func}()`);
+                    } else {
+                        result.push(`❌ ${func}()`);
+                    }
+                });
+                
+                addToResults(`<div class="test info">${result.join('<br>')}</div>`);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

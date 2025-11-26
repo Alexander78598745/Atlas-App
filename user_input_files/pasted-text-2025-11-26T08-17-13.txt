@@ -1,0 +1,210 @@
+(index):64 cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation
+(anonymous) @ (index):64
+Atlas-App/:2203 🌐 CARGA INICIAL: Obteniendo datos más recientes de Firebase...
+Atlas-App/:2213 📊 Firebase trips: 1 | Local trips: 1
+Atlas-App/:2217 🔄 SINCRONIZACIÓN: Aplicando datos más recientes de Firebase
+Atlas-App/:2250 Data loaded successfully from Firebase
+Atlas-App/:2502 Real-time synchronization enabled
+Atlas-App/:2526 Atlas app initialized with Firebase sync enabled
+Atlas-App/:2364 🔄 Real-time sync detectado
+Atlas-App/:2365 📊 Firebase: 1 viajes | Local: 1 viajes
+Atlas-App/:2366 🕒 Firebase timestamp: 2025-11-26T08:13:57.952Z | Local timestamp: 2025-11-26T08:13:57.952Z
+Atlas-App/:2415 📔 Real-time diary sync detectado
+Atlas-App/:2416 📊 Firebase: 2 entradas | Local: 2
+Atlas-App/:2417 🕒 Firebase timestamp: 2025-11-25T14:27:21.810Z | Local timestamp: 2025-11-25T14:27:21.810Z
+Atlas-App/:2466 🛤️ Real-time routes sync detectado
+Atlas-App/:2467 📊 Firebase: 2 rutas | Local: 2
+Atlas-App/:2468 🕒 Firebase timestamp: 2025-11-26T08:14:10.125Z | Local timestamp: 2025-11-26T08:14:10.125Z
+Atlas-App/:2364 🔄 Real-time sync detectado
+Atlas-App/:2365 📊 Firebase: 1 viajes | Local: 1 viajes
+Atlas-App/:2366 🕒 Firebase timestamp: 2025-11-26T08:14:57.959Z | Local timestamp: 2025-11-26T08:13:57.952Z
+Atlas-App/:2388 🔄 SINCRONIZACIÓN: Aplicando cambios desde Firebase
+Atlas-App/:2466 🛤️ Real-time routes sync detectado
+Atlas-App/:2467 📊 Firebase: 2 rutas | Local: 2
+Atlas-App/:2468 🕒 Firebase timestamp: 2025-11-26T08:15:08.063Z | Local timestamp: 2025-11-26T08:14:10.125Z
+Atlas-App/:2490 🔄 SINCRONIZACIÓN ROUTES: Aplicando cambios desde Firebase
+Atlas-App/:1990 🗑️ INICIANDO ELIMINACIÓN ROUTE - ID: 3 Type: number
+Atlas-App/:1995 Comparando: 1 ( number ) vs 3 ( number )= false
+Atlas-App/:1995 Comparando: 3 ( number ) vs 3 ( number )= true
+Atlas-App/:2004 ✅ Ruta encontrada: Ruta de Barcelona
+Atlas-App/:2007 ✅ Confirmación recibida
+Atlas-App/:2017 ✅ Filtrado: 2 → 1 rutas
+Atlas-App/:2025 ✅ Eliminado localmente. Nuevos datos: [{"name":"Ruta de París","duration":"3 días","id":1,"description":"Visita los lugares más emblemáticos de París en 3 días","itinerary":[{"day":1,"activities":["Mañana: Torre Eiffel","Tarde: Barrio Latin","Noche: Crucero por el Sena"]},{"activities":["Mañana: Louvre","Tarde: Notre-Dame","Noche: Montmartre"],"day":2},{"day":3,"activities":["Mañana: Campos Elíseos","Tarde: Versalles","Noche: Cena en Le Marais"]}],"difficulty":"Fácil","highlights":["Torre Eiffel","Louvre","Notre-Dame","Campos Elíseos"]}]
+Atlas-App/:2036 🔥 Sincronizando con Firebase - Usuario: anonymous
+Atlas-App/:2456 🔒 REAL-TIME ROUTES SYNC SALTADO (eliminación en progreso)
+Atlas-App/:2049 ✅ SINCRONIZACIÓN FIREBASE COMPLETADA
+Atlas-App/:1990 🗑️ INICIANDO ELIMINACIÓN ROUTE - ID: 1 Type: number
+Atlas-App/:1995 Comparando: 1 ( number ) vs 1 ( number )= true
+Atlas-App/:2004 ✅ Ruta encontrada: Ruta de París
+Atlas-App/:2007 ✅ Confirmación recibida
+Atlas-App/:2017 ✅ Filtrado: 1 → 0 rutas
+Atlas-App/:2025 ✅ Eliminado localmente. Nuevos datos: []
+Atlas-App/:2036 🔥 Sincronizando con Firebase - Usuario: anonymous
+Atlas-App/:2456 🔒 REAL-TIME ROUTES SYNC SALTADO (eliminación en progreso)
+Atlas-App/:2049 ✅ SINCRONIZACIÓN FIREBASE COMPLETADA
+Atlas-App/:2064 🔓 SINCRONIZACIÓN REACTIVADA
+Atlas-App/:2064 🔓 SINCRONIZACIÓN REACTIVADA
+index.esm2017.js:13558  POST https://firestore.googleapis.com/google.firestore.v1.Firestore/Write/channel?VER=8&database=projects%2Fatlas-app-fd6fe%2Fdatabases%2F(default)&gsessionid=e_PfdrgrwgjX5qPqP8-5Ts1EjE94Adhr_T7WNMwEOLg&SID=tTK5xE0EUAy1su0VX69SjQ&RID=47971&TYPE=terminate&zx=39t6oo8lpbfs net::ERR_BLOCKED_BY_CLIENT
+An @ channelrequest.js:1098
+Hn.close @ webchannelbasetransport.js:216
+oo @ index.esm2017.js:13558
+close @ index.esm2017.js:13372
+close @ index.esm2017.js:13952
+zo @ index.esm2017.js:13913
+(anonymous) @ index.esm2017.js:13904
+(anonymous) @ index.esm2017.js:14863
+(anonymous) @ index.esm2017.js:18062
+(anonymous) @ index.esm2017.js:18095
+Promise.then
+ta @ index.esm2017.js:18095
+enqueue @ index.esm2017.js:18062
+enqueueAndForget @ index.esm2017.js:18040
+handleDelayElapsed @ index.esm2017.js:14862
+(anonymous) @ index.esm2017.js:14844
+setTimeout
+start @ index.esm2017.js:14844
+createAndSchedule @ index.esm2017.js:14838
+enqueueAfterDelay @ index.esm2017.js:18135
+jo @ index.esm2017.js:13904
+ll @ index.esm2017.js:14622
+await in ll
+(anonymous) @ index.esm2017.js:14671
+await in (anonymous)
+onMessage @ index.esm2017.js:14134
+(anonymous) @ index.esm2017.js:13992
+(anonymous) @ index.esm2017.js:14015
+(anonymous) @ index.esm2017.js:18062
+(anonymous) @ index.esm2017.js:18095
+Promise.then
+ta @ index.esm2017.js:18095
+enqueue @ index.esm2017.js:18062
+enqueueAndForget @ index.esm2017.js:18040
+(anonymous) @ index.esm2017.js:14015
+(anonymous) @ index.esm2017.js:13992
+_o @ index.esm2017.js:13384
+(anonymous) @ index.esm2017.js:13613
+(anonymous) @ index.esm2017.js:13564
+xe @ eventtarget.js:351
+Se @ eventtarget.js:481
+Yn.Aa @ webchannelbasetransport.js:421
+_t @ webchannelbase.js:2342
+yt @ channelrequest.js:959
+I.Pa @ channelrequest.js:751
+I.nb @ channelrequest.js:610
+xe @ eventtarget.js:351
+Se @ eventtarget.js:481
+wn @ xhrio.js:915
+I.kb @ xhrio.js:872
+I.La @ xhrio.js:855
+ln @ fetchxmlhttpfactory.js:559
+I.Xa @ fetchxmlhttpfactory.js:406
+Promise.then
+cn @ fetchxmlhttpfactory.js:371
+I.Xa @ fetchxmlhttpfactory.js:410
+Promise.then
+cn @ fetchxmlhttpfactory.js:371
+I.Xa @ fetchxmlhttpfactory.js:410
+Promise.then
+cn @ fetchxmlhttpfactory.js:371
+I.$a @ fetchxmlhttpfactory.js:355
+Promise.then
+I.send @ fetchxmlhttpfactory.js:271
+I.ha @ xhrio.js:689
+mt @ channelrequest.js:585
+Pn @ channelrequest.js:532
+I.Ma @ webchannelbase.js:1701
+Fe @ run.js:116
+Promise.then
+Ne @ run.js:65
+Ln @ run.js:47
+_t @ webchannelbase.js:2377
+yt @ channelrequest.js:959
+I.Pa @ channelrequest.js:751
+I.nb @ channelrequest.js:610
+xe @ eventtarget.js:351
+Se @ eventtarget.js:481
+wn @ xhrio.js:915
+I.kb @ xhrio.js:872
+I.La @ xhrio.js:855
+ln @ fetchxmlhttpfactory.js:559
+I.Xa @ fetchxmlhttpfactory.js:406
+Promise.then
+cn @ fetchxmlhttpfactory.js:371
+I.$a @ fetchxmlhttpfactory.js:355
+Promise.then
+I.send @ fetchxmlhttpfactory.js:271
+I.ha @ xhrio.js:689
+mt @ channelrequest.js:582
+gt @ channelrequest.js:511
+I.Na @ webchannelbase.js:1486
+Fe @ run.js:116
+Promise.then
+Ne @ run.js:65
+kn @ run.js:47
+Hn.m @ webchannelbase.js:796
+ro @ index.esm2017.js:13556
+send @ index.esm2017.js:13375
+Wo @ index.esm2017.js:13907
+hu @ index.esm2017.js:14147
+(anonymous) @ index.esm2017.js:14657
+(anonymous) @ index.esm2017.js:13988
+(anonymous) @ index.esm2017.js:14015
+(anonymous) @ index.esm2017.js:18062
+(anonymous) @ index.esm2017.js:18095
+Promise.then
+ta @ index.esm2017.js:18095
+enqueue @ index.esm2017.js:18062
+enqueueAndForget @ index.esm2017.js:18040
+(anonymous) @ index.esm2017.js:14015
+(anonymous) @ index.esm2017.js:13987
+fo @ index.esm2017.js:13378
+(anonymous) @ index.esm2017.js:13622
+setTimeout
+Ro @ index.esm2017.js:13617
+eu @ index.esm2017.js:14123
+Zo @ index.esm2017.js:13986
+(anonymous) @ index.esm2017.js:13976
+Promise.then
+auth @ index.esm2017.js:13967
+start @ index.esm2017.js:13872
+start @ index.esm2017.js:14117
+fl @ index.esm2017.js:14653
+ll @ index.esm2017.js:14629
+await in ll
+ql @ index.esm2017.js:15865
+await in ql
+(anonymous) @ index.esm2017.js:20698
+await in (anonymous)
+(anonymous) @ index.esm2017.js:18062
+(anonymous) @ index.esm2017.js:18095
+Promise.then
+ta @ index.esm2017.js:18095
+enqueue @ index.esm2017.js:18062
+enqueueAndForget @ index.esm2017.js:18040
+(anonymous) @ index.esm2017.js:20698
+mg @ index.esm2017.js:20696
+lg @ index.esm2017.js:20606
+set @ database.ts:716
+syncToFirebase @ Atlas-App/:2039
+deleteRoute @ Atlas-App/:2059
+onclick @ Atlas-App/:1
+Atlas-App/:786 Uncaught TypeError: Cannot read properties of null (reading 'classList')
+    at loadDiaryContent (Atlas-App/:786:30)
+    at showPage (Atlas-App/:724:17)
+    at HTMLButtonElement.<anonymous> (Atlas-App/:669:21)
+loadDiaryContent @ Atlas-App/:786
+showPage @ Atlas-App/:724
+(anonymous) @ Atlas-App/:669
+Atlas-App/:2072 🗑️ INICIANDO ELIMINACIÓN DIARY - ID: 1763986887771 Type: number
+Atlas-App/:2077 Comparando: 1763990281597 ( number ) vs 1763986887771 ( number )= false
+Atlas-App/:2077 Comparando: 1763986887771 ( number ) vs 1763986887771 ( number )= true
+Atlas-App/:2086 ✅ Entrada encontrada: ROMA
+Atlas-App/:2089 ✅ Confirmación recibida
+Atlas-App/:2103 ✅ Eliminado localmente. Nuevos datos: [{"title":"COLISEO","content":"ESPECTACULAR","id":1763990281597,"location":"COLISEO ROMA","photos":["data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wgARCAgABgADASIAAhEBAxEB/8QAGgAAAwEBAQEAAAAAAAAAAAAAAAECAwQFBv/EABgBAQEBAQEAAAAAAAAAAAAAAAABAgME/9oADAMBAAIQAxAAAAKQXNQmiGgAAAaGIYogAAAABDAGIGgATATAAAAAEAAMQAAxAAAAACAAABAAAAQAmKgAABNAANOQAAABMQAAAACAAAACpZbTJmpBoGAJMAAbTErkEwE0SCBNWAgYACasAYA2gYEMAGAxMbQFJjTAaYDBoYDAqaAYJgDTEMAGDTBME0xDQAAmgAEwEqQlQSrKirpJbZxDMhywABoACgBWCGgGgBMEAAMEwABNADATAABAAAAAADQNAAAACGgAAEMTQQKIYJgJpAAECtNAgATAQAACYAAIAAAAAFUs0FRKqBMRQgQAAwqWCYJoGhCAEmqQNABQYAA2mDGAOEMBpgwBjE0xiY2ANMGMQwGmNgCaAYA0MGJoGAAACYmIEwQwQwQ2SUE0OhsRNOOIRDEFSwTQMCgAEwEAxCtNA0ACGDAQAAAAAAAAhiYCYAgaAaAaBoAAAAQwQAJgmgAAAE0AACAAQ0ACAAAAABDBNMEAAhiRrWFGkSizJro82lqWMSLcsE5GIAAE0CapDEQxRgNNDacMTKExoYNMAYNMGANMKmgaoAAGA0wYAADAAYmAACBgAAAAAmCGCGCoAGgAKEIAq4wMgAaABMHLGIoEDEKwAAkASsEUgATpDQDQNIYADQAAADQAA0MQAAAIAAYgAAAENAAIaAAE0AAJgIBFIlgIclJMaQASUs5XScwtQjUzDQyDSsw0rK10UCWIKvMNEklEsqWCEDTVAAAwYDEwBwmA2mDVA0wGAANpjBiYwBiYDBg0wABpgDEwAATAAYACYCBiGCbQmAwAAAQCCxpByieQgAAAYACaAAGgtYiRiaoaAAGgAAAAABFMEMQDQAMQAADQDEA0DQhghiYCBiAEwAEAAAJoBANAAhgCAEEgLNdcoRUiUVKkrZKYTRKMAaRVPKktqY3idFdSDpSaGYamajQzDVQWWSxtMKmoBMYMAYDAYDaYNMTaBgOpY2AAxNOGBQxDaYAwAAAABpgmAAxDQAwBiGCAAAQCCECapgHICyYnQIhgKNCAmA0AAAgYhglYgYgGgYgYnSAAAAAAAEMQMTAAAATQAAAAA0ACAAAENNDQAmgABDBCAASea1CgEkrkqkNk0mJgCEVIIIVjTQNMdIFSoqpcrJCkgG0OpcUQypp1NEpdRpEsAYwaY2mowGADBGADAYMGMTHCGDE6AYAwAAAAAaY00NDAAAABiYAmAIBCQBU5cg0DAOVNZA0ACgA0AAA0DEAAAAAAAIAGihiBoGIBoGACAaAAAABoAAaAAQ0ANMQAAgaAABANCBoAAAkpIE5yVy8lFRbKclqWgANpjSzSzIrWAQpMTAuSgKRSEU5YOEaVCi3nSu8mWZuXSsmmqGUqBOaG0DYxiaMBRgMGjAGANpwMBiYA6AYmA0MAYgAAGDEwAAAABiYAIGJDEhpCIFTQxDAKk5GjIAUAAATEMAAABDAEwAAQ0DQAAAUAACGAAIYmJgAgYIaAaAaAAAEDEDQhiBiAAAQAAIBkiimggzVyko4mmihNyjQilAjkVNMRhNaqSKc2TSolqjRORIQOWNoKmgVSSjAktKKaK35rjprDVKTBjQ2mg2lbTAYDAbBCkwacCbEwpiYNMGmAMQA0ADQxoYIpAAAADQgaAQAhICKCaAEUJjAOQTzRDEAAAAAAAAAAAJiBgIAAAAoTAABAAAAAAAgYgpACaGJgIAAAAQACGACaAAAAEAmglpSCFExYmkKqzqiIG4lGIscggU6mqROkqNJ0yKcqzVJq04NCENMKM3FPNlqaBxY7WcuszqsDSlS4VzJ16cm6bS2g1QAwBgMBjkBulScDQMHSGAMFSYmmDTAAEAwBiYDQAxAxCAaAQkEFAgEA0A00MTqkmcoGKAAAJoAGIYIaAAAAAEwEMENAAAFAACAABMAAAAAExDTQAAAJiGgE0AANAAACBoYk0CdLnDlaWaV5qhNhMTNlJOxCSEsp1NjtOHDmtEtIlFGbnYEykVZhU3ERsiDRmTADRGelSTVizPRMS4pUy1QEAI6dOPeTdosbAKQNhIwYwdJhDApMYAwGgAGADQMQAMABiYACpAAgABIQSKBAAAgpiEYCjTAYcrDFBMQ0AAAhgCYAmCGgAoAAEMAEADQACGCGCAAAAAQAAAAAAhiaAEwTQAAmgABMAAaBVDzaSQGWiCRFZTnY6HYSSgF0rWkZqihqoc6MjV6S4nVBz10BzrdphfRK5T0IxekGUdDrCrDOyDQxZUFD35ai51yVMS00ouacSxHVrxdKaMEbGg0wqWNpgDBp0ADAAAYEAFAMTTAaAAGgYgYSNCGgRIAQqaQNCGIsoljaoGmoNHMBignQDEACZCGUmmAAgIAATVAAJghgJgmAhggAAEAAAJghoBoAAABMEAIGIaEMEAMTEDWc2TSxboVyTm5ozcpNjsUNIndVm9iIe20uNdHRLyV2VLyPrJeXd0ZLVmM9Qct70mC2RgtnXOuiDmnozs5o3VnNPRFZtoemKOlc4dLy1lWW6XC5YrlxbioVoOq+XpSqm0GAMAYIwAaCgAAGJgAAMQFMAAUMToAE0DSBpAglGhU0kMksYgppgxgxgAoAcwGaAxDBDIQ0AFAAhggYgATBAANADEAAMSYCaAAABDBDBAAAIaAAE0AMQMQ0IAABA1IeKseEtk6UYaQKXlYhq5JVUVdxF7ay4b66Z0tFedNU4VOlSppm7oyNES6kABACGEtlklBjl0quGPRizzZ7cdTmnaUyWk1nQBvkRqRC7S6lTmxk1FXnZ03jqltNAYACMABgwABiAGAAAMQwQACYikFCQMkHAIIVAgEKxiYMoGUJgrQxNIYpTMDOkwACBMBNUAAAAAAAmAAIAQwAATBAAAAAhghggATATQ0wQAJgk0MQVIhoATATQmC5pJqYdFNzU5vMiUXKVapOr1lnW9s6z3pzSNblyuyE3RLpBRRDpkOgkpkFhC0RmaBk9UQtEZTuJzHRJzx1RZyZ90V5+PpYannx146zkrlCota34+6XKdolU0jYy2lrq5NE6Ki2WwRiYAwAGANANADTGgAaAAAAQDQqEIEQlSimkrGgGJhSsGxRgAASkjSmnCizYHz2gAAACExANAAAFAAJgmmCaAAAAAENAAAAmmAAAgABNAAAAgATBAACGJiTQDBRWbajTBY6seiwVYRli51kb0RWdM1HRXRjeet3LDuoirCaYIoEqBUADABgAAAikJjENAmCGEjCRpJjWazz2k5cOzOzh5/Qw3nljeLM+jn0OzPTPOsy4FrkHRUkvTrxdSaibI00YADAAAAAAaYAUAAJwgAQqaUlJJCRUgmykgoGFFBQwEK0SNKEqZmypjCzXmzWs+wI4dgGIChMgAAQNNDTKQAAAIBpiGgAAAAAQAAAAAACAAE0AAAAmCBDQxJggAAEiVkSm5xtWab47k8uvJYqHZVLolfS+nGjRXNDbFQxNOE2AqQDABiGCbBDAAAABoAYJgmCIYJUiVRURrJjG8HLj2ZWcWHXjrPNO0am+/F0yqOnmVRpmX0cvRmm+FnXWGrNMEYANCMTAEMAGIYFCaAENEjlyCFYJSMksaAGUFFA05WBQkgUyVEK5eefNrOmcuwadnrgcO4AAAmiGAICgAGmCCACk0DTAQxAAAIaGmgAAAAATQmAgBoAAEACAAAQAIBgZiG8dcNFxcdFm8bckuMBrDueiK611Y27dzU2OExgDBMAAGMQwGgYwQMQAA0TAAdJgCYJjhDATKlUiVckTpNZY9OccfP3c+pzYdOOs565a12Yu5eedIJc1HQ5U10a82zO4NlMQwEEwBgCBiBghiVMSBKSpFYIkEKwAG1QUWqpMBKGpmqmJsqYhK5ojWQDUGhGJnsCfn7gFJgJpwAAmCAoAgABMEwEAAFAAACaAAAAABNAAAACAABMQAAmgTBAAAEuGs7ztqM6kXRh1ouLo5Kad3Ndk9eN3srzpsqExgDBpiYxMABgADAAAAAGiB0AADEMAGJMAAAZKpUIIkYRGsVz49eJw49vNZyWjWTv8/rFn08y5uoL3w1zZ1hHfXP0MsQjctBzQAgAAAaJHIUJIEiwkQ0iwEwpUFFKmAyQJIKiZsrNc9l88lyxOgCwBoA69cT83cAAAQAxAxMBMAQAACGgGgACgAABNA00AAACGhoAAEDEAAIAATQACAAEqy0zaVCXEVF9PPqc2GkXNdkdMunRnvjZonDpUJsE2ADEMAAAYAUAhgwAQAAABoGAAxDAGhDAVKiaQlSEmEq0meW8Lzcndgnn5dPNvNCg78Xa84UUnMvRlqSrr8/rZ6CaZGmg0wTQCBoQIVNShomxw5BCpgI2UFpqACBAiBwoscRzWXkFjQ7kAtAEGnYNNPWYeb0CaGAIAAAYAgAAAQAAANAAAJgIKBoAABiAEAAMQACAABMEmgAAAQAJws5XDVzULmyxaziRpPTZt0Z9GNVoVK6VQxgMQxUAADKAAAAGiYKCaDAQ0AwEwALGKhNgACGCABUiRhKpElIkqTLDpyOLk9Ll04BzrOu/H2mNVEK4uavTK5cNoyT075+hlgMjRQhQ0AIV
+Atlas-App/:786 Uncaught TypeError: Cannot read properties of null (reading 'classList')
+    at loadDiaryContent (Atlas-App/:786:30)
+    at deleteDiaryEntry (Atlas-App/:2106:17)
+    at HTMLButtonElement.onclick (Atlas-App/:2532:9)
+loadDiaryContent @ Atlas-App/:786
+deleteDiaryEntry @ Atlas-App/:2106
+onclick @ Atlas-App/:2532
