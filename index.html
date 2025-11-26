@@ -2238,7 +2238,15 @@
                         // SIEMPRE usar los datos de Firebase como fuente de verdad
                         if (JSON.stringify(firebaseData) !== JSON.stringify(localData)) {
                             console.log('🔄 SINCRONIZACIÓN: Aplicando datos más recientes de Firebase');
-                            atlasApp.trips = firebaseData;
+                            
+                            // PROTECCIÓN: Verificar rutas eliminadas para trips
+                            const deletedRoutes = JSON.parse(localStorage.getItem('deletedRoutes') || '[]');
+                            const filteredFirebaseData = firebaseData.map(trip => ({
+                                ...trip,
+                                routes: trip.routes ? trip.routes.filter(route => !deletedRoutes.includes(String(route.id))) : []
+                            }));
+                            
+                            atlasApp.trips = filteredFirebaseData;
                             localStorage.setItem('atlasTrips', JSON.stringify(atlasApp.trips));
                         } else {
                             console.log('✅ Datos sincronizados - Firebase y Local coinciden');
@@ -2250,17 +2258,39 @@
                         }
                     }
                     
-                    // Load diary entries
+                    // Load diary entries - CON PROTECCIÓN CONTRA ELIMINACIONES
                     const diaryDoc = await firestore.collection('users').doc(userId).collection('diary').doc('data').get();
                     if (diaryDoc.exists && atlasApp.diaryEntries.length === 0) {
-                        atlasApp.diaryEntries = diaryDoc.data().entries || [];
+                        let firebaseEntries = diaryDoc.data().entries || [];
+                        const deletedEntries = JSON.parse(localStorage.getItem('deletedDiaryEntries') || '[]');
+                        
+                        // FILTRAR entradas eliminadas
+                        const filteredEntries = firebaseEntries.filter(entry => !deletedEntries.includes(String(entry.id)));
+                        
+                        console.log('📊 Firebase entradas:', firebaseEntries.length, '| Filtradas:', filteredEntries.length);
+                        console.log('🚫 IDs bloqueados:', deletedEntries);
+                        
+                        atlasApp.diaryEntries = filteredEntries;
                         localStorage.setItem('atlasDiaryEntries', JSON.stringify(atlasApp.diaryEntries));
                     }
                     
-                    // Load routes
+                    // Load routes - CON PROTECCIÓN CONTRA ELIMINACIONES
                     const routesDoc = await firestore.collection('users').doc(userId).collection('routes').doc('data').get();
                     if (routesDoc.exists && atlasApp.routes.length === 0) {
-                        atlasApp.routes = routesDoc.data().routes || [];
+                        let firebaseRoutes = routesDoc.data().routes || [];
+                        const deletedRoutes = JSON.parse(localStorage.getItem('deletedRoutes') || '[]');
+                        const deletedRouteIdsFromFirebase = routesDoc.data().deletedRouteIds || [];
+                        
+                        // COMBINAR todas las rutas eliminadas (local + Firebase)
+                        const allDeletedRoutes = [...new Set([...deletedRoutes, ...deletedRouteIdsFromFirebase])];
+                        
+                        // FILTRAR rutas eliminadas
+                        const filteredRoutes = firebaseRoutes.filter(route => !allDeletedRoutes.includes(String(route.id)));
+                        
+                        console.log('📊 Firebase rutas:', firebaseRoutes.length, '| Filtradas:', filteredRoutes.length);
+                        console.log('🚫 IDs bloqueados:', allDeletedRoutes);
+                        
+                        atlasApp.routes = filteredRoutes;
                         localStorage.setItem('atlasRoutes', JSON.stringify(atlasApp.routes));
                     }
                     
