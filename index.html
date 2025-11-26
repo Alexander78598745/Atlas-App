@@ -2260,7 +2260,7 @@
                     
                     // Load diary entries - CON PROTECCIÓN CONTRA ELIMINACIONES
                     const diaryDoc = await firestore.collection('users').doc(userId).collection('diary').doc('data').get();
-                    if (diaryDoc.exists && atlasApp.diaryEntries.length === 0) {
+                    if (diaryDoc.exists) {
                         let firebaseEntries = diaryDoc.data().entries || [];
                         const deletedEntries = JSON.parse(localStorage.getItem('deletedDiaryEntries') || '[]');
                         
@@ -2276,7 +2276,7 @@
                     
                     // Load routes - CON PROTECCIÓN CONTRA ELIMINACIONES
                     const routesDoc = await firestore.collection('users').doc(userId).collection('routes').doc('data').get();
-                    if (routesDoc.exists && atlasApp.routes.length === 0) {
+                    if (routesDoc.exists) {
                         let firebaseRoutes = routesDoc.data().routes || [];
                         const deletedRoutes = JSON.parse(localStorage.getItem('deletedRoutes') || '[]');
                         const deletedRouteIdsFromFirebase = routesDoc.data().deletedRouteIds || [];
